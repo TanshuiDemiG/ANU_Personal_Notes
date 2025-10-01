@@ -1,0 +1,631 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\setlength{\parskip}{1em}
+\usepackage{listings}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{makecell, multirow, tabularx} % pack for table
+\newcolumntype{C}{>{\centering\arraybackslash}X} % for centering
+\usepackage{float}%for pic to follow words
+\usepackage{ctex}% change abstract name
+\ctexset{
+abstractname = {Statement}
+}
+
+\title{MATH6005--Assignment 2}
+\author{Chenxuan Sun}
+\author{u7983176}
+\begin{document}
+	\maketitle
+	\begin{abstract}
+		The assignment I have submitted has been produced according to the rules on Page 1 of Assignment 1. The solutions produced have been written/typed on my own. I have not used AI to prepare my solutions. I have provided references of sources I have used when appropriate.
+		\centering Student ID: u7983176
+	\end{abstract}
+	\newpage
+
+	%%main
+
+	% question 1.A
+	\section{Question 1}
+	\textbf{Part A}
+	
+	\textbf{I. Explain why the proof is incorrect.}
+	
+	The given proof attempts to show that the product of any even integer \( m \) and any odd integer \( n \) is even. \\
+ 	The proof is incorrect because it incorrectly assumes that both \( m \) and \( n \) can be expressed in terms of the same integer \( k \). Specifically, it assumes \( m = 2k \) and \( n = 2k + 1 \). This is not valid because \( m \) and \( n \) are independent integers, and there is no reason they should be related by the same \( k \).
+	Here is a contradiction:\\
+	If m = 4 =2k, , then k = 2. \\
+	But substituting k =2 into the expression for n gives: \\
+	\[n\=2k+1\=2(2)+1\=5n = 2k + 1 = 2(2) + 1 = 5n\=2k+1\=2(2)+1\=5\]
+	
+	II. Give a correct proof of the statement.
+	
+	Correct Proof:
+	
+	Let \( m \) be an even integer and \( n \) be an odd integer. By definition, there exists an integer \( a \) such that \( m = 2a \). Similarly, since \( n \) is odd, there exists an integer \( b \) such that \( n = 2b + 1 \).
+	
+	Consider the product \( mn \):
+	\[ mn = (2a)(2b + 1) = 4ab + 2a = 2(2ab + a) \]
+	
+	Let \( q = 2ab + a \). Since \( a \) and \( b \) are integers, \( q \) is also an integer. Therefore, \( mn = 2q \), which by definition means \( mn \) is even.
+	
+	Thus, the product of any even integer and any odd integer is even.
+	
+	% question 1.B
+	\textbf{Part B}
+	
+	Use mathematical induction to prove that for every integer \( n \geq 3 \),
+	\[ \sum_{k=3}^{n} 4^k = 4(4^n - 16)/3 \]
+	
+	Proof by Induction:
+	
+	Base Case:
+	
+	For \( n = 3 \):
+	\[ \sum_{k=3}^{3} 4^k = 4^3 = 64 \]
+	\[ \frac{4(4^3 - 16)}{3} = \frac{4(64 - 16)}{3} = \frac{4 \cdot 48}{3} = 64 \]
+	
+	The base case holds.
+	
+	Inductive Step:
+	
+	Assume the statement is true for some integer \( n \geq 3 \). That is,
+	\[ \sum_{k=3}^{n} 4^k = \frac{4(4^n - 16)}{3} \]
+	
+	We need to show that:
+	\[ \sum_{k=3}^{n+1} 4^k = \frac{4(4^{n+1} - 16)}{3} \]
+	
+	Consider:
+	\[ \sum_{k=3}^{n+1} 4^k = \sum_{k=3}^{n} 4^k + 4^{n+1} \]
+	
+	By the inductive hypothesis:
+	\[ \sum_{k=3}^{n} 4^k = \frac{4(4^n - 16)}{3} \]
+	
+	Thus:
+	\[ \sum_{k=3}^{n+1} 4^k = \frac{4(4^n - 16)}{3} + 4^{n+1} \]
+	
+	Factor out \( 4 \):
+	\[ = \frac{4(4^n - 16) + 12 \cdot 4^{n+1}}{3} \]
+	\[ = \frac{4(4^n - 16 + 3 \cdot 4^{n+1})}{3} \]
+	\[ = \frac{4(4^{n+1} - 16)}{3} \]
+	
+	Thus, the statement holds for \( n+1 \).
+	
+	By the principle of mathematical induction, the statement is true for all integers \( n \geq 3 \).
+	
+	% question 1.C
+	\textbf{Part C}	
+	
+	I. Trace the Selection Sort Algorithm on \( S \) with ordering rule "≥" and count how many comparisons were made.
+	
+	Selection Sort works by repeatedly finding the maximum element (considering ascending order) from the unsorted part and putting it at the beginning.
+	
+	Initial Array: S = [3, 1, 4, 1, 5, 9, 2, 6]
+	
+	1. Find the maximum element in \( S[0..7] \) and swap with \( S[0] \):
+	- Comparisons: 7 (to find the max)
+	- Array after step 1: [9, 1, 4, 1, 5, 3, 2, 6]
+	
+	2. Find the maximum element in \( S[1..7] \) and swap with \( S[1] \):
+	- Comparisons: 6
+	- Array after step 2: [9, 6, 4, 1, 5, 3, 2, 1]
+	
+	3. Find the maximum element in \( S[2..7] \) and swap with \( S[2] \):
+	- Comparisons: 5
+	- Array after step 3: [9, 6, 5, 1, 4, 3, 2, 1]
+	
+	4. Find the maximum element in \( S[3..7] \) and swap with \( S[3] \):
+	- Comparisons: 4
+	- Array after step 4: [9, 6, 5, 4, 1, 3, 2, 1]
+	
+	5. Find the maximum element in \( S[4..7] \) and swap with \( S[4] \):
+	- Comparisons: 3
+	- Array after step 5: [9, 6, 5, 4, 3, 1, 2, 1]
+	
+	6. Find the maximum element in \( S[5..7] \) and swap with \( S[5] \):
+	- Comparisons: 2
+	- Array after step 6: [9, 6, 5, 4, 3, 2, 1, 1]
+	
+	7. Find the maximum element in \( S[6..7] \) and swap with \( S[6] \):
+	- Comparisons: 1
+	- Array after step 7: [9, 6, 5, 4, 3, 2, 1, 1]
+	
+	Total comparisons: \( 7 + 6 + 5 + 4 + 3 + 2 + 1 = 28 \)
+	
+	II. Trace the Merge Sort Algorithm on \( S \) with ordering rule "≥" and count how many comparisons were made.
+	
+	Merge Sort works by dividing the array into halves, sorting each half, and then merging the sorted halves.
+	
+	Initial Array: S = [3, 1, 4, 1, 5, 9, 2, 6]
+	
+	1. Divide: [3, 1, 4, 1] and [5, 9, 2, 6]
+	
+	2. Divide: [3, 1] and [4, 1]; [5, 9] and [2, 6]
+	
+	3. Divide: [3] and [1]; [4] and [1]; [5] and [9]; [2] and [6]
+	
+	4. Merge: [1, 3]; [1, 4]; [5, 9]; [2, 6]
+	- Comparisons: 1 + 1 + 1 + 1 = 4
+	
+	5. Merge: [1, 1, 3, 4]; [2, 5, 6, 9]
+	- Comparisons: 3 + 3 = 6
+	
+	6. Merge: [1, 1, 2, 3, 4, 5, 6, 9]
+	- Comparisons: 7
+	
+	Total comparisons: \( 4 + 6 + 7 = 17 \)
+	
+	III. Without tracing the algorithm, how many comparisons are required to complete the Selection Sort Algorithm on \( S \) with ordering rule "≤". Explain your answer.
+	
+	For Selection Sort, the number of comparisons required to sort an array of \( n \) elements is always:
+	\[ \frac{n(n-1)}{2} \]
+	
+	For \( n = 8 \):
+	\[ \frac{8(8-1)}{2} = \frac{8 \cdot 7}{2} = 28 \]
+	
+	IV. Explain why we would need to trace the Merge Sort Algorithm on \( S \) with ordering rule "≤" if we wanted to count the number of comparisons it required.
+	
+	Merge Sort's number of comparisons depends on the specific order of elements and how they are divided and merged. The number of comparisons in Merge Sort is not fixed for a given \( n \) but depends on the data itself. Therefore, to count the exact number of comparisons, we must trace the algorithm.
+	
+	\section{Question 2}
+	\textbf{Part A}
+	
+	I. Linearity of the Function F
+	
+	Let \( F: \mathbb{Q}^3 \to \mathbb{Q}^3 \) be defined by
+	
+	\[ F(x, y, z) = (4x - 3y + 2z, 3y, x + y + z). \]
+	
+	We need to determine whether \( F \) is a linear function. A function \( F \) is linear if it satisfies the following properties for all vectors \( \mathbf{u}, \mathbf{v} \in \mathbb{Q}^3 \) and all scalars \( c \in \mathbb{Q} \):
+	
+	1. \( F(\mathbf{u} + \mathbf{v}) = F(\mathbf{u}) + F(\mathbf{v}) \)
+	2. \( F(c\mathbf{u}) = cF(\mathbf{u}) \)
+	
+	Let's check these properties.
+	
+	1. Additivity:
+	
+	Let \( \mathbf{u} = (x_1, y_1, z_1) \) and \( \mathbf{v} = (x_2, y_2, z_2) \).
+	
+	\[ \mathbf{u} + \mathbf{v} = (x_1 + x_2, y_1 + y_2, z_1 + z_2). \]
+	
+	Now, compute \( F(\mathbf{u} + \mathbf{v}) \):
+	
+	\[ F(\mathbf{u} + \mathbf{v}) = F(x_1 + x_2, y_1 + y_2, z_1 + z_2) = (4(x_1 + x_2) - 3(y_1 + y_2) + 2(z_1 + z_2), 3(y_1 + y_2), (x_1 + x_2) + (y_1 + y_2) + (z_1 + z_2)). \]
+	
+	Simplify the components:
+	
+	\[ F(\mathbf{u} + \mathbf{v}) = (4x_1 + 4x_2 - 3y_1 - 3y_2 + 2z_1 + 2z_2, 3y_1 + 3y_2, x_1 + x_2 + y_1 + y_2 + z_1 + z_2). \]
+	
+	Now, compute \( F(\mathbf{u}) + F(\mathbf{v}) \):
+	
+	\[ F(\mathbf{u}) = (4x_1 - 3y_1 + 2z_1, 3y_1, x_1 + y_1 + z_1), \]
+	\[ F(\mathbf{v}) = (4x_2 - 3y_2 + 2z_2, 3y_2, x_2 + y_2 + z_2). \]
+	
+	Add these two vectors:
+	
+	\[ F(\mathbf{u}) + F(\mathbf{v}) = (4x_1 - 3y_1 + 2z_1 + 4x_2 - 3y_2 + 2z_2, 3y_1 + 3y_2, x_1 + y_1 + z_1 + x_2 + y_2 + z_2). \]
+	
+	We see that:
+	
+	\[ F(\mathbf{u} + \mathbf{v}) = F(\mathbf{u}) + F(\mathbf{v}). \]
+	
+	2. Homogeneity:
+	
+	Let \( c \in \mathbb{Q} \) and \( \mathbf{u} = (x, y, z) \).
+	
+	\[ c\mathbf{u} = (cx, cy, cz). \]
+	
+	Now, compute \( F(c\mathbf{u}) \):
+	
+	\[ F(c\mathbf{u}) = F(cx, cy, cz) = (4(cx) - 3(cy) + 2(cz), 3(cy), cx + cy + cz). \]
+	
+	Simplify the components:
+	
+	\[ F(c\mathbf{u}) = (4cx - 3cy + 2cz, 3cy, cx + cy + cz). \]
+	
+	Now, compute \( cF(\mathbf{u}) \):
+	
+	\[ F(\mathbf{u}) = (4x - 3y + 2z, 3y, x + y + z), \]
+	
+	\[ cF(\mathbf{u}) = c(4x - 3y + 2z, 3y, x + y + z) = (c(4x - 3y + 2z), c(3y), c(x + y + z)). \]
+	
+	We see that:
+	
+	\[ F(c\mathbf{u}) = cF(\mathbf{u}). \]
+	
+	Since both properties are satisfied, \( F \) is a linear function.
+	
+	II. Linearity of the Function f
+	
+	Let \( f: \mathbb{Q}^3 \to \mathbb{Q}^3 \) be defined by
+	
+	\[ f(x, y, z) = (4x - 3y + 2z, 3y + 1, x + y). \]
+	
+	We need to determine whether \( f \) is a linear function. A function \( f \) is linear if it satisfies the following properties for all vectors \( \mathbf{u}, \mathbf{v} \in \mathbb{Q}^3 \) and all scalars \( c \in \mathbb{Q} \):
+	
+	1. \( f(\mathbf{u} + \mathbf{v}) = f(\mathbf{u}) + f(\mathbf{v}) \)
+	2. \( f(c\mathbf{u}) = c f(\mathbf{u}) \)
+	
+	Let's check these properties.
+	
+	1. Additivity:
+	
+	Let \( \mathbf{u} = (x_1, y_1, z_1) \) and \( \mathbf{v} = (x_2, y_2, z_2) \).
+	
+	\[ \mathbf{u} + \mathbf{v} = (x_1 + x_2, y_1 + y_2, z_1 + z_2). \]
+	
+	Now, compute \( f(\mathbf{u} + \mathbf{v}) \):
+	
+	\[ f(\mathbf{u} + \mathbf{v}) = f(x_1 + x_2, y_1 + y_2, z_1 + z_2) = (4(x_1 + x_2) - 3(y_1 + y_2) + 2(z_1 + z_2), 3(y_1 + y_2) + 1, (x_1 + x_2) + (y_1 + y_2)). \]
+	
+	Simplify the components:
+	
+	\[ f(\mathbf{u} + \mathbf{v}) = (4x_1 + 4x_2 - 3y_1 - 3y_2 + 2z_1 + 2z_2, 3y_1 + 3y_2 + 1, x_1 + x_2 + y_1 + y_2). \]
+	
+	Now, compute \( f(\mathbf{u}) + f(\mathbf{v}) \):
+	
+	\[ f(\mathbf{u}) = (4x_1 - 3y_1 + 2z_1, 3y_1 + 1, x_1 + y_1), \]
+	\[ f(\mathbf{v}) = (4x_2 - 3y_2 + 2z_2, 3y_2 + 1, x_2 + y_2). \]
+	
+	Add these two vectors:
+	
+	\[ f(\mathbf{u}) + f(\mathbf{v}) = (4x_1 - 3y_1 + 2z_1 + 4x_2 - 3y_2 + 2z_2, 3y_1 + 1 + 3y_2 + 1, x_1 + y_1 + x_2 + y_2). \]
+	
+	\[ f(\mathbf{u}) + f(\mathbf{v}) = (4x_1 - 3y_1 + 2z_1 + 4x_2 - 3y_2 + 2z_2, 3y_1 + 3y_2 + 2, x_1 + x_2 + y_1 + y_2). \]
+	
+	We see that:
+	
+	\[ f(\mathbf{u} + \mathbf{v}) \neq f(\mathbf{u}) + f(\mathbf{v}). \]
+	
+	Since the additivity property is not satisfied, \( f \) is not a linear function.
+	
+	\textbf{Part B}
+
+	
+	Let \( \{ s_n \}_{n \in \mathbb{N}} \subseteq \mathbb{Q}^2 \), where \( s_n = (a_n, b_n) \) is defined implicitly by:
+	
+	\[ s_1 = (1, 0) \]
+	\[ \forall n \in \mathbb{N} \left( a_{n+1} = 77a_n - 90b_n, \ b_{n+1} = 60a_n - 70b_n \right). \]
+	
+	I. Find the 2 × 2 matrix X such that \( \begin{pmatrix} a_{n+1} \\ b_{n+1} \end{pmatrix} = X \begin{pmatrix} a_n \\ b_n \end{pmatrix} \)
+	
+	From the recurrence relations, we can write:
+	
+	\[ \begin{pmatrix} a_{n+1} \\ b_{n+1} \end{pmatrix} = \begin{pmatrix} 77 & -90 \\ 60 & -70 \end{pmatrix} \begin{pmatrix} a_n \\ b_n \end{pmatrix}. \]
+	
+	Thus, the matrix \( X \) is:
+	
+	\[ X = \begin{pmatrix} 77 & -90 \\ 60 & -70 \end{pmatrix}. \]
+	
+	II. Calculate \( \det(A) \) and \( A^{-1} \)
+	
+	Let \( A = \begin{pmatrix} -6 & 5 \\ -5 & 4 \end{pmatrix} \).
+	
+	The determinant of \( A \) is given by:
+	
+	\[ \det(A) = (-6)(4) - (5)(-5) = -24 + 25 = 1. \]
+	
+	To find the inverse of \( A \), we use the formula for the inverse of a 2x2 matrix:
+	
+	\[ A^{-1} = \frac{1}{\det(A)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix} = \begin{pmatrix} 4 & -5 \\ 5 & -6 \end{pmatrix}. \]
+	
+	III. Show that \( X = A \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix} A^{-1} \)
+	
+	We need to verify the equality:
+	
+	\[ X = A \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix} A^{-1}. \]
+	
+	Compute the right-hand side:
+	
+	\[ A \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix} = \begin{pmatrix} -6 & 5 \\ -5 & 4 \end{pmatrix} \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix} = \begin{pmatrix} -12 & 25 \\ -10 & 20 \end{pmatrix}. \]
+	
+	Now, multiply by \( A^{-1} \):
+	
+	\[ \begin{pmatrix} -12 & 25 \\ -10 & 20 \end{pmatrix} \begin{pmatrix} 4 & -5 \\ 5 & -6 \end{pmatrix} = \begin{pmatrix} 4(-12) + 25(5) & -5(-12) + 25(-6) \\ 4(-10) + 20(5) & -5(-10) + 20(-6) \end{pmatrix} \]
+	
+	\[ = \begin{pmatrix} -48 + 125 & 60 - 150 \\ -40 + 100 & 50 - 120 \end{pmatrix} = \begin{pmatrix} 77 & -90 \\ 60 & -70 \end{pmatrix}. \]
+	
+	Thus, \( X = A \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix} A^{-1} \).
+	
+	IV. Find \( s_{101} \) using parts (I)-(III)
+	
+	Given \( s_1 = (1, 0) \) and the recurrence relation, we can write:
+	
+	\[ s_{101} = X^{100} s_1. \]
+	
+	From part (III), we have:
+	
+	\[ X = A \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix} A^{-1}. \]
+	
+	Thus,
+	
+	\[ X^{100} = \left( A \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix} A^{-1} \right)^{100} = A \begin{pmatrix} 2^{100} & 0 \\ 0 & 5^{100} \end{pmatrix} A^{-1}. \]
+	
+	Now, compute \( X^{100} s_1 \):
+	
+	\[ X^{100} s_1 = A \begin{pmatrix} 2^{100} & 0 \\ 0 & 5^{100} \end{pmatrix} A^{-1} \begin{pmatrix} 1 \\ 0 \end{pmatrix}. \]
+	
+	\[ = A \begin{pmatrix} 2^{100} & 0 \\ 0 & 5^{100} \end{pmatrix} \begin{pmatrix} 4 \\ 5 \end{pmatrix}. \]
+	
+	\[ = A \begin{pmatrix} 2^{100} \cdot 4 \\ 5^{100} \cdot 5 \end{pmatrix} = A \begin{pmatrix} 2^{100} \cdot 4 \\ 5^{100} \cdot 5 \end{pmatrix}. \]
+	
+	\[ = A \begin{pmatrix} 4 \cdot 2^{100} \\ 5 \cdot 5^{100} \end{pmatrix}. \]
+	
+	\[ = \begin{pmatrix} -6 & 5 \\ -5 & 4 \end{pmatrix} \begin{pmatrix} 4 \cdot 2^{100} \\ 5 \cdot 5^{100} \end{pmatrix}. \]
+	
+	\[ = \begin{pmatrix} -6(4 \cdot 2^{100}) + 5(5 \cdot 5^{100}) \\ -5(4 \cdot 2^{100}) + 4(5 \cdot 5^{100}) \end{pmatrix}. \]
+	
+	\[ = \begin{pmatrix} -24 \cdot 2^{100} + 25 \cdot 5^{100} \\ -20 \cdot 2^{100} + 20 \cdot 5^{100} \end{pmatrix}. \]
+	
+	\[ = \begin{pmatrix} 25 \cdot 5^{100} - 24 \cdot 2^{100} \\ 20 \cdot (5^{100} - 2^{100}) \end{pmatrix}. \]
+	
+	Thus, \( s_{101} \) is:
+	
+	\[ s_{101} = \left( 25 \cdot 5^{100} - 24 \cdot 2^{100}, 20 \cdot (5^{100} - 2^{100}) \right). \]
+	
+	
+	\section{Question 3}
+	\textbf{Part A}
+	Calculate \( S(4, 3) \) by finding all possible partitions of \(\{1,2,3,4\}\) into 3 disjoint non-empty subsets.
+	
+	To find \( S(4, 3) \), we need to determine all possible ways to partition the set \(\{1, 2, 3, 4\}\) into 3 non-empty subsets. 
+	
+	Let's list all possible partitions:
+	
+	1. \(\{\{1\}, \{2\}, \{3, 4\}\}\)
+	2. \(\{\{1\}, \{3\}, \{2, 4\}\}\)
+	3. \(\{\{1\}, \{4\}, \{2, 3\}\}\)
+	4. \(\{\{2\}, \{3\}, \{1, 4\}\}\)
+	5. \(\{\{2\}, \{4\}, \{1, 3\}\}\)
+	6. \(\{\{3\}, \{4\}, \{1, 2\}\}\)
+	
+	Thus, there are 6 ways to partition the set \(\{1, 2, 3, 4\}\) into 3 non-empty subsets, so \( S(4, 3) = 6 \).
+	
+	\textbf{Part B}
+	Prove that \( S(n, k) = S(n-1, k-1) + kS(n-1, k) \) for \( 0 < k < n \).
+	
+	Consider all possible partitions of the set \(\{1, 2, ..., n\}\) into \( k \) disjoint non-empty subsets. We can categorize these partitions based on whether the element \( n \) is in its own subset or not.
+	
+	1. If \( n \) is in its own subset, then we need to partition the remaining \( n-1 \) elements into \( k-1 \) non-empty subsets. The number of such partitions is \( S(n-1, k-1) \).
+	
+	2. If \( n \) is not in its own subset, then \( n \) must be in one of the \( k \) subsets formed by the remaining \( n-1 \) elements. The number of ways to partition \( n-1 \) elements into \( k \) subsets is \( S(n-1, k) \), and for each of these partitions, there are \( k \) choices for which subset to add \( n \) to. Thus, the number of such partitions is \( kS(n-1, k) \).
+	
+	Combining these two cases, we get:
+	\[ S(n, k) = S(n-1, k-1) + kS(n-1, k) \]
+	
+	\textbf{Part C}
+	Prove that the number of surjective functions from \( X \) to \( Y \) is \( k! S(n, k) \).
+	
+	A surjective function \( f: X \to Y \) maps each element of \( X \) to some element of \( Y \) such that every element of \( Y \) is mapped to by at least one element of \( X \). 
+	
+	Given a surjective function \( f \), it induces a partition of \( X \) into \( k \) non-empty subsets, where each subset corresponds to the preimage of an element in \( Y \). The number of ways to partition \( X \) into \( k \) non-empty subsets is \( S(n, k) \).
+	
+	For each of these partitions, we need to assign each of the \( k \) subsets to one of the \( k \) elements in \( Y \). There are \( k! \) ways to do this assignment.
+	
+	Thus, the total number of surjective functions from \( X \) to \( Y \) is:
+	\[ k! S(n, k) \]
+	
+	\textbf{Part D}
+	Suppose \( S(4,2) = 7 \). When \( n = 5 \) and \( k = 3 \), calculate the probability that the function generated by the machine is surjective.
+	
+	First, we need to calculate the number of surjective functions from a 5-element set \( X \) to a 3-element set \( Y \). Using the formula from part C, the number of surjective functions is:
+	\[ 3! S(5, 3) \]
+	
+	Using the recurrence relation from part B, we can calculate \( S(5, 3) \):
+	\[ S(5, 3) = S(4, 2) + 3S(4, 3) \]
+	Given \( S(4, 2) = 7 \) and \( S(4, 3) = 6 \), we have:
+	\[ S(5, 3) = 7 + 3 \cdot 6 = 7 + 18 = 25 \]
+	
+	So, the number of surjective functions is:
+	\[ 3! S(5, 3) = 6 \cdot 25 = 150 \]
+	
+	The total number of functions from \( X \) to \( Y \) is \( 3^5 = 243 \).
+	
+	Thus, the probability that a randomly generated function is surjective is:
+	\[ \frac{150}{243} = \frac{50}{81} \approx 0.6173 \]
+	
+	Therefore, the probability that the function generated by the machine is surjective is approximately \( 0.6173 \) or \( \frac{50}{81} \).
+	
+	
+	
+	\section{Question 4}
+	\textbf{Part A}
+	
+	A byte is a binary string of 8 bits. We need to find how many bytes contain at least five 1's and one 0.
+	
+	First, let's calculate the total number of bytes that contain exactly \( k \) ones, where \( k \) ranges from 5 to 8.
+	
+	The total number of 8-bit binary strings is \( 2^8 = 256 \).
+	
+	To find the number of bytes with exactly \( k \) ones, we use the binomial coefficient:
+	
+	\[
+	\binom{8}{k}
+	\]
+	
+	We need to sum this for \( k = 5, 6, 7, 8 \):
+	
+	\[
+	\sum_{k=5}^{8} \binom{8}{k}
+	\]
+	
+	Let's calculate each term separately:
+	
+	\[
+	\binom{8}{5} = \frac{8!}{5!(8-5)!} = \frac{8!}{5!3!} = 56
+	\]
+	
+	\[
+	\binom{8}{6} = \frac{8!}{6!(8-6)!} = \frac{8!}{6!2!} = 28
+	\]
+	
+	\[
+	\binom{8}{7} = \frac{8!}{7!(8-7)!} = \frac{8!}{7!1!} = 8
+	\]
+	
+	\[
+	\binom{8}{8} = \frac{8!}{8!(8-8)!} = \frac{8!}{8!0!} = 1
+	\]
+	
+	Adding these together:
+	
+	\[
+	\binom{8}{5} + \binom{8}{6} + \binom{8}{7} + \binom{8}{8} = 56 + 28 + 8 + 1 = 93
+	\]
+	
+	Therefore, the number of bytes that contain at least five 1's and one 0 is 93.
+	
+	\textbf{Part B}
+	
+	The bank requires a password for you to access your account. The password is a sequence of 12 characters that contains exactly:
+	- 4 lower case alphabetical letters,
+	- 2 upper case alphabetical letters,
+	- 4 decimal digits, and
+	- 2 special characters from the set \{ @, #, $, % \}.
+	
+	We need to calculate the total number of possible passwords, denoted by \( |X| \).
+	
+	1. Choosing positions for each type of character:
+	- Choose 4 positions out of 12 for lower case letters:
+	\[
+	\binom{12}{4}
+	\]
+	- Choose 2 positions out of the remaining 8 for upper case letters:
+	\[
+	\binom{8}{2}
+	\]
+	- Choose 4 positions out of the remaining 6 for digits:
+	\[
+	\binom{6}{4}
+	\]
+	- The remaining 2 positions are for special characters.
+	
+	2. Calculating the number of ways to choose the characters:
+	- There are 26 lower case letters, 26 upper case letters, 10 digits, and 4 special characters.
+	- The number of ways to choose 4 lower case letters:
+	\[
+	26^4
+	\]
+	- The number of ways to choose 2 upper case letters:
+	\[
+	26^2
+	\]
+	- The number of ways to choose 4 digits:
+	\[
+	10^4
+	\]
+	- The number of ways to choose 2 special characters:
+	\[
+	4^2
+	\]
+	
+	Combining these, the total number of possible passwords is:
+	
+	\[
+	|X| = \binom{12}{4} \cdot \binom{8}{2} \cdot \binom{6}{4} \cdot 26^4 \cdot 26^2 \cdot 10^4 \cdot 4^2
+	\]
+	
+	Calculating the binomial coefficients:
+	
+	\[
+	\binom{12}{4} = \frac{12!}{4!(12-4)!} = 495
+	\]
+	
+	\[
+	\binom{8}{2} = \frac{8!}{2!(8-2)!} = 28
+	\]
+	
+	\[
+	\binom{6}{4} = \frac{6!}{4!(6-4)!} = 15
+	\]
+	
+	So,
+	
+	\[
+	|X| = 495 \cdot 28 \cdot 15 \cdot 26^6 \cdot 10^4 \cdot 4^2
+	\]
+	
+	Now we need to find the least value of \( k \) such that the clash score \( N \) is no more than \( 10^{15} \).
+	
+	The clash score \( N \) is given by:
+	
+	\[
+	N = \max_{y \in Y} | \{ x \in X | f(x) = y \} |
+	\]
+	
+	We need \( N \leq 10^{15} \).
+	
+	Since \( Y \) is the set of all \( k \)-digit PINs, \( |Y| = 10^k \).
+	
+	We need:
+	
+	\[
+	\frac{|X|}{|Y|} \leq 10^{15}
+	\]
+	
+	Thus,
+	
+	\[
+	\frac{495 \cdot 28 \cdot 15 \cdot 26^6 \cdot 10^4 \cdot 4^2}{10^k} \leq 10^{15}
+	\]
+	
+	\[
+	495 \cdot 28 \cdot 15 \cdot 26^6 \cdot 10^4 \cdot 4^2 \leq 10^{15+k}
+	\]
+	
+	Taking logarithms (base 10) on both sides:
+	
+	\[
+	\log_{10}(495) + \log_{10}(28) + \log_{10}(15) + 6 \log_{10}(26) + 4 + 2 \log_{10}(4) \leq 15 + k
+	\]
+	
+	Approximating:
+	
+	\[
+	\log_{10}(495) \approx 2.7, \quad \log_{10}(28) \approx 1.45, \quad \log_{10}(15) \approx 1.18
+	\]
+	
+	\[
+	\log_{10}(26) \approx 1.41, \quad \log_{10}(4) \approx 0.6
+	\]
+	
+	\[
+	2.7 + 1.45 + 1.18 + 6 \cdot 1.41 + 4 + 2 \cdot 0.6 \leq 15 + k
+	\]
+	
+	\[
+	2.7 + 1.45 + 1.18 + 8.46 + 4 + 1.2 \leq 15 + k
+	\]
+	
+	\[
+	18.99 \leq 15 + k
+	\]
+	
+	\[
+	k \geq 3.99
+	\]
+	
+	Since \( k \) must be an integer, the least value of \( k \) is 4.
+	
+	Thus, the least value of \( k \) that may give a clash score of no more than \( 10^{15} \) is 4.
+	%%
+	
+	
+	
+	
+
+
+	
+\end{document}
